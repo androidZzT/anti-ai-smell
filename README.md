@@ -1,83 +1,113 @@
-# anti-ai-smell · 把 AI 味的中文改成人话
+<div align="center">
+  <img src="docs/hero.png" width="720" alt="anti-ai-smell" style="border-radius: 16px;">
 
-AI 写中文有一股固定的「味儿」。它爱把英文概念硬翻成生硬的词——`门控`（gate）、`横切`（cross-cutting）、`一等公民`（first-class）；爱造母语者不用的新词——`切法`、`硬货`；爱给平淡的事套戏剧化形容——`理直气壮的谎`、`欢快的成功`；还爱端着宏大官腔——`赋能`、`涌现`、`不仅仅……而是……`。
+  <h1>anti-ai-smell</h1>
+  <p><strong>把 AI 味的中文改成人话 · Turn AI-flavored Chinese back into plain human speech.</strong></p>
+  <p><em>A zero-dependency linter + word table + Claude skill. It catches the words AI keeps writing in Chinese, and tells you what a person would actually say.</em></p>
 
-单看每个词都没错。但堆在一起，读者一眼就知道：这是 AI 写的。
+  <p>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-ff7b54?style=flat-square" alt="License: MIT"></a>
+    <img src="https://img.shields.io/badge/Python-3-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3">
+    <img src="https://img.shields.io/badge/deps-none-1a9e6b?style=flat-square" alt="No dependencies">
+    <img src="https://img.shields.io/badge/Claude-Skill-ff7b54?style=flat-square" alt="Claude Skill">
+    <a href="https://github.com/androidZzT/anti-ai-smell/stargazers"><img src="https://img.shields.io/github/stars/androidZzT/anti-ai-smell?style=flat-square&color=ff7b54" alt="Stars"></a>
+  </p>
 
-**anti-ai-smell 做一件事：把这些词标出来，换成人话。**
+  <p>
+    <a href="#what-it-does">What</a> &bull;
+    <a href="#quick-start">Quick start</a> &bull;
+    <a href="#the-word-table">Word table</a> &bull;
+    <a href="#two-rules">Rules</a> &bull;
+    <a href="#contributing">Contributing</a> &bull;
+    <a href="README_CN.md">中文</a>
+  </p>
+</div>
 
-它是一个 linter + 一张词表，也是一个 [Claude Code / Claude Skill](https://docs.claude.com/en/docs/claude-code/skills)。和管句子结构的去 AI 味工具（如句式类 humanizer）互补——那些管句式，这个管**中文特有的词汇口味**。
+---
 
-## 快速开始
+## What it does
+
+AI writes Chinese with a recognizable "smell". It hard-translates English concepts into stiff words no native speaker uses — `门控` (gate), `横切` (cross-cutting), `一等公民` (first-class); it coins words like `切法` and `硬货`; it dresses plain facts in theatrics like `理直气壮的谎` ("a defiant lie"); and it leans on grand officialese — `赋能` (empower), `涌现` (emerge), `不仅仅……而是……` (not just… but…).
+
+Each word is fine on its own. Pile them up and any reader instantly knows: a machine wrote this.
+
+**anti-ai-smell does one thing: it flags those words and gives you the plain version.**
+
+It is a linter plus a word table, and also a [Claude Skill](https://docs.claude.com/en/docs/claude-code/skills). It complements sentence-level de-AI tools that target syntax — those handle sentence structure, this handles the **Chinese word choices**.
+
+<div align="center">
+  <img src="docs/lint-demo.png" width="720" alt="lint output" style="border-radius: 12px;">
+</div>
+
+---
+
+## Quick start
 
 ```bash
 git clone https://github.com/androidZzT/anti-ai-smell.git
 cd anti-ai-smell
 
-# 扫一份稿子
-python3 lint.py 你的文章.md
+# Scan a draft
+python3 lint.py your-article.md
 
-# 看整张词表
+# Print the whole table
 python3 lint.py --list
 ```
 
-无第三方依赖，Python 3 直接跑。
+Python 3, no third-party dependencies. Exit code `1` on a **hard**-level hit (grand officialese / filler), `0` otherwise — drop it into CI if you like.
 
-### 输出长这样
+---
 
-```
-⚠ article.md  命中 6 处（hard 1）
-  翻译腔
-    门控 (gate / gating) ×3  →  把关 / 卡一道 / 网关   // ML 的 gating…那种场合可用
-    收敛 (converge) ×1  →  慢慢定下来 / 归到一处        // 数学、迭代算法里精确，别乱替
-  宏大 / 官腔
-    赋能 ×1  →  帮 / 让……能……
-  句式
-    破折号滥用 ×4  →  能用逗号或句号就别用破折号
-```
+## The word table
 
-## 词表分类
+51 words across 6 categories, plus a handful of AI-smell syntax patterns (em-dash overuse, rhetorical questions, "not just… but…", emoji, and more).
 
-| 类别 | 例子 | 人话 |
+| Category | Example | Plain (人话) |
 |---|---|---|
-| **生造词** | 切法 / 硬货 / 打法 | 这个角度 / 干货 / 做法 |
-| **翻译腔** | 门控(gate) / 横切(cross-cutting) / 一等公民(first-class) / 鲁棒(robust) | 把关 / 通用那部分 / 原生支持 / 稳 |
-| **戏剧化** | 理直气壮的谎 / 欢快的成功 / 最容易的死法 | 报告成功其实失败了 / 又报了个「成功」/ 最容易翻车的地方 |
-| **带味的字** | 偷师 / 偷凭证 | 学 / 窃取凭证 |
-| **宏大 / 官腔** | 赋能 / 涌现 / 不仅仅 / 长出 | 帮 / 冒出新能力 / 不只是 / 新增 |
-| **套话 / 连接词** | 值得注意的是 / 此外 / 至关重要 | 删掉直接说 / 另起一句 / 关键 |
+| **Coined** 生造词 | 切法 / 硬货 / 打法 | this angle / real substance / approach |
+| **Translationese** 翻译腔 | 门控(gate) / 横切(cross-cutting) / 鲁棒(robust) / 一等公民(first-class) | gatekeep / the common part / solid / native support |
+| **Theatrical** 戏剧化 | 理直气壮的谎 / 欢快的成功 / 最容易的死法 | reported success but failed / another "success" / where it breaks most easily |
+| **Loaded** 带味的字 | 偷师 / 偷凭证 | learn from / steal credentials |
+| **Grand / officialese** 宏大官腔 | 赋能 / 涌现 / 不仅仅 / 长出 | help / emerge as a new ability / not just / add |
+| **Filler / connectors** 套话 | 值得注意的是 / 此外 / 至关重要 | delete, say it directly / new sentence / key |
 
-完整词表见 [`data/ai-flavor-words.json`](data/ai-flavor-words.json)。
+Full table: [`data/ai-flavor-words.json`](data/ai-flavor-words.json).
 
-## 两条原则
+---
 
-**1. 不机械替换。** linter 只标位置、给建议。改不改、怎么改，按语境定。很多词在专业场合有精确含义：
+## Two rules
 
-- `门控` 在机器学习（gating network）、电路里是精确术语，那种上下文保留。
-- `收敛` 在数学、迭代算法里是术语，别乱替。
+**1. Don't replace mechanically.** The linter only flags positions and suggests. Whether and how to change it is up to context. Many words are precise in the right place:
 
-判断标准就一句：**这话，一个母语者平时会不会这么说。** 会就留，不会就换。
+- `门控` is a real term in machine learning (a gating network) and electronics — keep it there.
+- `收敛` is a real term in math and iterative algorithms — don't blindly swap it.
 
-**2. 正常术语不算 AI 味。** `幂等`、`编排`、`缓存` 这类圈内人正常用的词，不在词表里。anti-ai-smell 针对的是「生造 / 翻译腔 / 戏剧化 / 官腔」，不是「所有专业词」。
+The test is one sentence: **would a native speaker actually say this?** If yes, keep it. If no, use the plain column.
 
-## 当 Claude Skill 用
+**2. Normal jargon is not AI-smell.** Words like `幂等` (idempotent), `编排` (orchestration), `缓存` (cache) that professionals genuinely use are **not** in the table. anti-ai-smell targets *coined / translationese / theatrical / officialese* — not "all technical terms".
 
-把整个目录放进 `~/.claude/skills/anti-ai-smell/`，Claude 写完中文稿子会自动扫一遍去 AI 味。详见 [`SKILL.md`](SKILL.md)。
+---
 
-## 加词
+## Use it as a Claude Skill
 
-词表是社区维护的。发现新的 AI 味词，往 [`data/ai-flavor-words.json`](data/ai-flavor-words.json) 对应类别里加，或提 PR。收词标准：**母语者平时不这么说，但 AI 老写它。**
+Drop the whole directory into `~/.claude/skills/anti-ai-smell/`. Claude will scan Chinese drafts for AI-smell before handing them back. See [`SKILL.md`](SKILL.md).
 
-每条格式：
+---
+
+## Contributing
+
+The word table is community-maintained. Found a new AI-smell word? Add it to [`data/ai-flavor-words.json`](data/ai-flavor-words.json) under the right category, or open a PR. The bar: **a native speaker wouldn't say it, but AI keeps writing it.**
 
 ```json
-{"w": "门控", "en": "gate / gating", "human": ["把关", "卡一道", "网关"], "note": "ML 的 gating… 那种场合可用"}
+{"w": "门控", "en": "gate / gating", "human": ["把关", "卡一道", "网关"], "note": "legit in ML gating / circuits"}
 ```
 
-## 致谢
+---
 
-- 句式层的去 AI 味思路，参考 [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)。
-- 词表来自日常中文写作里被反复逮到的真实案例，持续补充。
+## Credits
+
+- The syntax-level de-AI thinking draws on [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing).
+- The word table grew out of real cases caught over and over in everyday Chinese writing, and keeps growing.
 
 ## License
 

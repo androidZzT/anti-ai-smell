@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1000px; background:#FAFAF7; font-family:'Noto Sans SC',sans-serif; padding:40px; }
+  .term { background:#1f1d1b; border-radius:16px; box-shadow:0 30px 60px -30px rgba(0,0,0,.5); overflow:hidden; }
+  .titlebar { background:#2b2825; padding:14px 20px; display:flex; align-items:center; gap:9px; }
+  .dot { width:14px; height:14px; border-radius:50%; }
+  .d1 { background:#ff5f56; } .d2 { background:#ffbd2e; } .d3 { background:#27c93f; }
+  .tt { margin-left:14px; font-family:'JetBrains Mono',monospace; font-size:18px; color:#8a857c; }
+  .body { padding:26px 30px 30px; font-family:'JetBrains Mono',monospace; font-size:21px; line-height:1.72; color:#e8e6e1; }
+  .cmd { color:#e8e6e1; } .prompt { color:#7fd1a0; }
+  .warn { color:#ffbd6b; font-weight:700; }
+  .cat { color:#5fd0e0; font-weight:700; }
+  .w { color:#ffd479; } .en { color:#8a857c; } .arr { color:#ff9d7a; } .good { color:#7fd1a0; } .note { color:#6b665e; }
+  .foot { color:#ff8f6b; }
+  .zh { font-family:'Noto Sans SC',sans-serif; font-weight:500; }
+</style></head>
+<body>
+  <div class="term">
+    <div class="titlebar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="tt">bash</span></div>
+    <div class="body">
+<span class="prompt">$</span> <span class="cmd">python3 lint.py <span class="zh">文章</span>.md</span><br><br>
+<span class="warn">⚠ <span class="zh">文章</span>.md　<span class="zh">命中 6 处（hard 1）</span></span><br>
+　<span class="cat zh">翻译腔</span><br>
+　　<span class="w zh">门控</span> <span class="en">(gate/gating)</span> ×3　<span class="arr">→</span>　<span class="good zh">把关 / 卡一道 / 网关</span>　<span class="note zh">// ML 的 gating 那种场合可用</span><br>
+　　<span class="w zh">收敛</span> <span class="en">(converge)</span> ×1　　<span class="arr">→</span>　<span class="good zh">慢慢定下来 / 归到一处</span><br>
+　<span class="cat zh">宏大 / 官腔</span><br>
+　　<span class="w zh">赋能</span> ×1　<span class="arr">→</span>　<span class="good zh">帮 / 让……能……</span><br>
+　<span class="cat zh">句式</span><br>
+　　<span class="w zh">破折号滥用</span> ×4　<span class="arr">→</span>　<span class="good zh">能用逗号或句号就别用破折号</span><br><br>
+<span class="foot zh">hard 级命中 1 处（宏大官腔 / 套话），建议清零。</span>
+    </div>
+  </div>
+</body></html>

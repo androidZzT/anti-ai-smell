@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:640px; background:#FAFAF7; font-family:'Noto Sans SC',sans-serif; position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .dots { position:absolute; inset:0; background-image:radial-gradient(#e7e4dc 1.4px, transparent 1.4px); background-size:28px 28px; opacity:.6; }
+  .bar { position:absolute; top:0; left:0; right:0; height:10px; background:#ff7b54; }
+  .kicker { position:relative; font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; letter-spacing:2px; color:#b59a7d; text-transform:uppercase; }
+  .name { position:relative; font-family:'JetBrains Mono',monospace; font-size:78px; font-weight:800; color:#1a1a1a; margin-top:10px; letter-spacing:-2px; }
+  .name .cur { display:inline-block; width:30px; height:66px; background:#ff7b54; margin-left:8px; transform:translateY(8px); border-radius:4px; }
+  .tag { position:relative; font-size:34px; font-weight:700; color:#4a4640; margin-top:14px; }
+  .card { position:relative; margin-top:34px; background:#fff; border:3px solid #ece8df; border-radius:22px; box-shadow:0 26px 54px -34px rgba(0,0,0,.4); padding:26px 40px; display:grid; grid-template-columns:auto auto; gap:14px 46px; }
+  .row { display:flex; align-items:center; gap:16px; font-size:30px; }
+  .bad { color:#b0aaa0; text-decoration:line-through; text-decoration-color:#ff7b54; text-decoration-thickness:3px; font-weight:700; }
+  .arr { color:#ff7b54; font-weight:800; font-family:'JetBrains Mono',monospace; }
+  .good { color:#1a9e6b; font-weight:800; }
+  .en { font-family:'JetBrains Mono',monospace; font-size:18px; color:#b59a7d; }
+</style></head>
+<body>
+  <div class="dots"></div><div class="bar"></div>
+  <div class="kicker">中文去 AI 味 · Chinese de-AI-smell linter</div>
+  <div class="name">anti-ai-smell<span class="cur"></span></div>
+  <div class="tag">把 AI 味的中文改成人话</div>
+  <div class="card">
+    <div class="row"><span class="bad">门控</span><span class="arr">→</span><span class="good">把关</span></div>
+    <div class="row"><span class="bad">赋能</span><span class="arr">→</span><span class="good">帮 / 让…能…</span></div>
+    <div class="row"><span class="bad">涌现</span><span class="arr">→</span><span class="good">冒出新能力</span></div>
+    <div class="row"><span class="bad">不仅仅…而是</span><span class="arr">→</span><span class="good">不只是</span></div>
+    <div class="row"><span class="bad">鲁棒</span><span class="arr">→</span><span class="good">稳 / 抗造</span></div>
+    <div class="row"><span class="bad">值得注意的是</span><span class="arr">→</span><span class="good">删掉直接说</span></div>
+  </div>
+</body></html>
