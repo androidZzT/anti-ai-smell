@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "renhua",
+  "name": "anti-ai-smell",
   "description": "中文 AI 味词汇 → 人话 映射表。收录 AI 生成中文里高频的生造词、翻译腔、戏剧化、宏大官腔，给出母语者真正会说的替代。",
   "categories": [
     {

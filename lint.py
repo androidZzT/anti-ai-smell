@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""renhua —— 中文去 AI 味 linter。
+"""anti-ai-smell —— 中文去 AI 味 linter。
 
 扫一份中文稿子，标出 AI 味词汇（生造词/翻译腔/戏剧化/宏大官腔/套话）和 AI 味句式，
 并给出母语者真正会说的「人话」替代。

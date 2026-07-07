@@ -1,18 +1,18 @@
-# renhua · 把 AI 味的中文改成人话
+# anti-ai-smell · 把 AI 味的中文改成人话
 
 AI 写中文有一股固定的「味儿」。它爱把英文概念硬翻成生硬的词——`门控`（gate）、`横切`（cross-cutting）、`一等公民`（first-class）；爱造母语者不用的新词——`切法`、`硬货`；爱给平淡的事套戏剧化形容——`理直气壮的谎`、`欢快的成功`；还爱端着宏大官腔——`赋能`、`涌现`、`不仅仅……而是……`。
 
 单看每个词都没错。但堆在一起，读者一眼就知道：这是 AI 写的。
 
-**renhua 做一件事：把这些词标出来，换成人话。**
+**anti-ai-smell 做一件事：把这些词标出来，换成人话。**
 
 它是一个 linter + 一张词表，也是一个 [Claude Code / Claude Skill](https://docs.claude.com/en/docs/claude-code/skills)。和管句子结构的去 AI 味工具（如句式类 humanizer）互补——那些管句式，这个管**中文特有的词汇口味**。
 
 ## 快速开始
 
 ```bash
-git clone https://github.com/<your-name>/renhua.git
-cd renhua
+git clone https://github.com/androidZzT/anti-ai-smell.git
+cd anti-ai-smell
 
 # 扫一份稿子
 python3 lint.py 你的文章.md
@@ -58,11 +58,11 @@ python3 lint.py --list
 
 判断标准就一句：**这话，一个母语者平时会不会这么说。** 会就留，不会就换。
 
-**2. 正常术语不算 AI 味。** `幂等`、`编排`、`缓存` 这类圈内人正常用的词，不在词表里。renhua 针对的是「生造 / 翻译腔 / 戏剧化 / 官腔」，不是「所有专业词」。
+**2. 正常术语不算 AI 味。** `幂等`、`编排`、`缓存` 这类圈内人正常用的词，不在词表里。anti-ai-smell 针对的是「生造 / 翻译腔 / 戏剧化 / 官腔」，不是「所有专业词」。
 
 ## 当 Claude Skill 用
 
-把整个目录放进 `~/.claude/skills/renhua/`，Claude 写完中文稿子会自动扫一遍去 AI 味。详见 [`SKILL.md`](SKILL.md)。
+把整个目录放进 `~/.claude/skills/anti-ai-smell/`，Claude 写完中文稿子会自动扫一遍去 AI 味。详见 [`SKILL.md`](SKILL.md)。
 
 ## 加词
 
